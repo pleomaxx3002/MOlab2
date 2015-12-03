@@ -92,7 +92,7 @@ std::pair<std::vector<double>, Matrix> Matrix::Gauss(std::vector<double> f) {
 	Matrix t(*this);
 	Matrix inverse(m.size());
 	inverse.SetIdentity();
-	std::ofstream outf("output.txt");
+	//std::ofstream outf("output.txt");
 	for (int i = 0; i < (m.size() - 1); ++i) {
 		if (abs(m[i][i]) < eps) {
 			for (int j = i + 1; j < m.size(); ++j) {
@@ -114,24 +114,24 @@ std::pair<std::vector<double>, Matrix> Matrix::Gauss(std::vector<double> f) {
 			M.m[j][i] = -t.m[i][j] / t.m[i][i];
 		Matrix tmp(M * inverse);
 		inverse = tmp;
-		for (int j = 0; j < 5; ++j){
+		/*for (int j = 0; j < 5; ++j){
 			for (int k = 0; k < 5; ++k)
 				outf << inverse.m[j][k] << ' ';
 			outf << std::endl;
-		}
+		}*/
 		for (int j = i + 1; j < m.size(); ++j) {
 			f[j] -= f[i] * t.m[j][i] / t.m[i][i];
 			for (int k = m.size() - 1; k >= i; --k) {
 				t.m[j][k] -= t.m[j][i] * t.m[i][k] / t.m[i][i];
 			}
 		}
-		outf << std::endl << std::endl;
+		/*outf << std::endl << std::endl;
 		for (int j = 0; j < 5; ++j){
 			for (int k = 0; k < 5; ++k)
 				outf << t.m[j][k] << ' ';
 			outf << std::endl;
 		}
-		outf << std::endl << std::endl << std::endl << std::endl << std::endl;
+		outf << std::endl << std::endl << std::endl << std::endl << std::endl;*/
 	}
 	Matrix M(m.size());
 	M.SetNull();

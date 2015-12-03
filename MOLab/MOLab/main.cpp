@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <functional>
+#include <fstream>
 #include <cmath>
 #include "Matrix.h"
 
@@ -15,6 +16,7 @@ const double eps = 1.e-10;
 
 
 int main(int argc, char** argv) {
+	std::ofstream out("output.txt"); std::streambuf *coutbuf = std::cout.rdbuf(); std::cout.rdbuf(out.rdbuf());
 	Matrix m(5);
 	for (int i = 0; i < 5; ++i){
 		for (int j = 0; j < 5; ++j){
